@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="28dp"
+    android:height="28dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Material Icons "reply" 水平镜像 = 官方 iOS 风格分享弯箭头（箭头朝右上） -->
+    <group
+        android:scaleX="-1"
+        android:pivotX="12">
+        <path
+            android:fillColor="#FF333333"
+            android:pathData="M10,9V5L3,12l7,7v-4.1c5,0 8.5,1.6 11,5.1c-1,-5 -4,-10 -11,-11z" />
+    </group>
+</vector>

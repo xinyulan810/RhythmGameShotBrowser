@@ -1,0 +1,21 @@
+# Gradle
+.gradle/
+build/
+app/build/
+captures/
+.externalNativeBuild/
+.cxx/
+!gradle/wrapper/gradle-wrapper.jar
+
+# IDE
+.idea/
+*.iml
+local.properties
+
+# 用户数据 / 敏感文件（含 API Key、截图数据库、备份，一律不入库）
+tools/backup/
+tools/ua_tmp/
+tools/lock_screen.png
+tmp_shots*.db
+*.db
+*.apk
