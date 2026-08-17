@@ -11,12 +11,12 @@ data class VlmConfig(
     val apiKey: String,
     val model: String,
     val incrementalEnabled: Boolean,
-    val concurrency: Int = 4
+    val concurrency: Int = 16
 ) {
     companion object {
         const val DEFAULT_BASE = "https://dashscope.aliyuncs.com/compatible-mode/v1"
         const val DEFAULT_MODEL = "qwen3.7-flash"
-        const val DEFAULT_CONCURRENCY = 4
+        const val DEFAULT_CONCURRENCY = 16
         private const val PREFS = "vlm_config"
 
         fun load(context: Context): VlmConfig {

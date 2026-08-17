@@ -30,6 +30,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -151,14 +152,11 @@ class MainActivity : AppCompatActivity() {
         val concurrency = cfg.concurrency.coerceAtLeast(1)
         vlmPaused.set(false)
         binding.aiPauseButton.text = "暂停"
-        binding.aiStatusRow.visibility = View.VISIBLE
         vlmJob = lifecycleScope.launch(Dispatchers.IO) {
             val total = db.vlmPendingCount()
-            if (total == 0) {
-                withContext(Dispatchers.Main) {
-                    binding.aiStatusText.text = "全部截图已识别完成"
-                }
-                return@launch
+            if (total == 0) return@launch // 没有待识别截图：不显示状态行，有新图时再弹出
+            withContext(Dispatchers.Main) {
+                binding.aiStatusRow.visibility = View.VISIBLE
             }
             var done = 0
             updateAiStatus("AI 识别中 0/$total（并发 $concurrency）")
@@ -187,6 +185,11 @@ class MainActivity : AppCompatActivity() {
             updateAiStatus("AI 识别完成 $done/$total")
             allShots = db.all()
             refreshUi()
+            // 完成信息短暂停留后自动隐藏；下次扫描发现新图时会重新弹出
+            delay(2000)
+            withContext(Dispatchers.Main) {
+                binding.aiStatusRow.visibility = View.GONE
+            }
         }
     }
 

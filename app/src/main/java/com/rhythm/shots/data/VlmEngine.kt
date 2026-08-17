@@ -50,7 +50,10 @@ object VlmEngine {
             try {
                 val prompt = """
 你是音游识别助手。以下是一组 Android 应用包名，请判断每个包名对应的游戏（多为音游），严格返回 JSON 对象：{"包名":"游戏名",...}
-只返回你能确定的，不确定的跳过。示例：{"moe.low.arc":"Arcaea","com.sega.pjsekai":"世界计划"}
+必须给列表中的每个包名都返回结果，禁止跳过任何包名：
+- 能确定的，返回游戏名（如 "王者荣耀"、"Arcaea"）；
+- 不确定或无法判断的，返回 "*" + 该包名 作为暂用名（如 "com.unknown.xxx" 不确定就返回 "*com.unknown.xxx"）。
+示例：{"moe.low.arc":"Arcaea","com.sega.pjsekai":"世界计划","com.unknown.test":"*com.unknown.test"}
 包名列表：${packages.joinToString("、")}
 """.trimIndent()
                 val body = JSONObject().apply {
