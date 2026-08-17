@@ -32,7 +32,12 @@
 
 ## AI 配置说明
 
-- 兼容任意 OpenAI Chat Completions 接口，在「AI设置」中配置 Base URL / API Key / 模型
+- **推荐：阿里云百炼（通义千问）**
+  - API Key 获取：登录 [阿里云百炼控制台](https://bailian.console.aliyun.com/)（首页右上角「API-KEY」→ 创建）
+  - Base URL：`https://dashscope.aliyuncs.com/compatible-mode/v1`
+  - 模型推荐：`qwen-vl-plus` / `qwen-vl-max` 等视觉（VL）系列
+- 也支持自定义其他 OpenAI 兼容接口，在「AI设置」中配置 Base URL / API Key / 模型
+- ⚠️ **自定义接口时，必须选择支持图片输入的多模态（视觉）模型**（如 qwen-vl、gpt-4o 等）；纯文本模型无法识别截图
 - API Key 仅保存在本机应用私有配置中，不上传
 - 截图内容仅发送到你配置的接口用于识别
 
